@@ -1,0 +1,30 @@
+﻿@model  List<IdentityUser>
+@{
+    ViewData["Title"] = "Search";
+}
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<h2>Search</h2>
+
+@foreach(var u in Model)
+{
+    <div class="card">
+        <h2>@u.UserName</h2>
+        <button class="btn btn-info" id="@u.Id">Dodaj</button>
+    </div>
+}
+
+<script>
+
+    $(".btn-info").click(function () {
+        var userId = $(this).attr('id');
+        $.ajax({
+            method: 'POST',
+            url: "/Home/AddFriend/" + userId,
+            success: function () {
+                alert('Dodano do listy znajomych');
+            }
+    });
+    });
+
+    
+</script>

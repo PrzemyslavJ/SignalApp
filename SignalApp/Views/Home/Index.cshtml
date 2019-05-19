@@ -1,0 +1,39 @@
+﻿@model List<IdentityUser>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<style>
+    .friend{
+        cursor:pointer;
+    }
+    .mr-10{
+        margin-top: 25px;
+    }
+</style>
+<div class="container">
+    <form asp-action="Search">
+        <input type="text" class="form-control" name="query" />
+        <input type="submit" class="btn btn-info" value="Szukaj" />
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            @foreach(var user in Model)
+            {
+            <h4 class="friend">
+                <span name="@user.Id" id="">&#9679;</span>
+                <span>@user.UserName</span>
+            </h4>
+            }
+        </div>
+        <div class="col-lg-8">
+            <h1 class="chat-with-user" id=""></h1>
+            <textarea class="form-control mr-10" rows="10" id="msg-window"></textarea>
+            <input type="text" class="form-control mr-10" id="new-msg"/>
+            <button class="btn btn-info mr-10" id="send-msg">Send</button>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>
